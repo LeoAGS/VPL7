@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include <iostream>
 #include "intruso.hpp"
 
 void Intruso::set_senha_vazada(std::string vazou){
@@ -16,54 +17,73 @@ void Intruso::set_senha_vazada(std::string vazou){
 }
 
 std::string Intruso::crack_senha(){
-    for(int i=0;i<6;i++){
-        for(int j=0; j<_numEntradas;j++){
-            char a = _entradaLetra[j][i];
-            switch (a){
-                case 'A':
-                    _descobre.push_back(_entradaNumerica[j][0]);
-                    _descobre.push_back(_entradaNumerica[j][1]);
-                    break;
+
+            for(int i=0;i<6;i++){
+                std::cout << "entrei 1 for crack" << std::endl;
+                std::cout << "numero de entradas salvas " << _numEntradas << std::endl;
+                for(int j=0; j<_numEntradas;j++){
+                    std::cout << "entrei 2 for crack" << std::endl;
+                    char a = _entradaLetra[j][i];
+                    switch (a){
+                        case 'A':
+                            std::cout << "entrei case A" << std::endl;
+                            _descobre.push_back(_entradaNumerica[j][0]);
+                            _descobre.push_back(_entradaNumerica[j][1]);
+                            break;
                 
-                case 'B':
-                    _descobre.push_back(_entradaNumerica[j][2]);
-                    _descobre.push_back(_entradaNumerica[j][3]);
-                    break;
+                        case 'B':
+                            std::cout << "entrei case B" << std::endl;
+                            _descobre.push_back(_entradaNumerica[j][2]);
+                            _descobre.push_back(_entradaNumerica[j][3]);
+                            break;
 
-                case 'C':
-                    _descobre.push_back(_entradaNumerica[j][4]);
-                    _descobre.push_back(_entradaNumerica[j][5]);
-                    break;
+                        case 'C':
+                            std::cout << "entrei case c" << std::endl;
+                            _descobre.push_back(_entradaNumerica[j][4]);
+                            _descobre.push_back(_entradaNumerica[j][5]);
+                            break;
 
-                case 'D':
-                    _descobre.push_back(_entradaNumerica[j][6]);
-                    _descobre.push_back(_entradaNumerica[j][7]);
-                    break;
+                        case 'D':
+                            std::cout << "entrei case D" << std::endl;
+                            _descobre.push_back(_entradaNumerica[j][6]);
+                            _descobre.push_back(_entradaNumerica[j][7]);
+                            break;
 
-                case 'E':
-                    _descobre.push_back(_entradaNumerica[j][8]);
-                    _descobre.push_back(_entradaNumerica[j][9]);
-                    break;
+                        case 'E':
+                            std::cout << "entrei case E" << std::endl;
+                            _descobre.push_back(_entradaNumerica[j][8]);
+                            _descobre.push_back(_entradaNumerica[j][9]);
+                            break;
+                    }
+                    std::cout << "sai do switch" << std::endl;
+            
+                }
+                std::cout << "terminei switch" << std::endl;
+                for(int c=0; c<_numEntradas*2 ;c++){
+                    std::cout << _descobre[c] << std::endl;
+                }
+                for(int n=0; n<10;n++){
+                    int a=0;
+                    for(int c=0; c<_numEntradas*2 ;c++){
+                        if(_descobre[c]==n){
+                            a++;
+                        }
+                    }
+                    if(a==_numEntradas){
+                        _senha.push_back(n);
+                        break;
+                    }
+                }
+
+            }
+            for(int i = 0; i<6; i++){
+                std::cout << _senha[i] << std::endl;
             }
             
-        }
-        for(int n=0; n<10;n++){
-            int a=0;
-            for(int c=0;c<_numEntradas*10;c++){
-                if(_descobre[c]==n){
-                    a++;
-                }
+            std::string senha={""};
+            for(int i=0;i<6;i++){
+                senha += std::to_string(_senha[i]);
             }
-            if(a==_numEntradas){
-                _senha[i]=n;
-                break;
-            }
-        }
+            return senha;
 
-    }
-    std::string senha={""};
-    for(int i=0;i<6;i++){
-        senha += std::to_string(_senha[i]);
-    }
-    return senha;
-}
+        }
