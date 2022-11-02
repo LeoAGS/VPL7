@@ -11,6 +11,8 @@ class Intruso{
     std::vector<int> _descobre;
 
     public:
+        Intruso();
+        void apagaDescobre();
         void set_senha_vazada(std::string vazou);
         std::string crack_senha();
 };
