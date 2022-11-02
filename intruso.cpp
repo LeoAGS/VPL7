@@ -17,7 +17,6 @@ void Intruso::set_senha_vazada(std::string vazou){
 }
 
 std::string Intruso::crack_senha(){
-
     for(int i=0;i<6;i++){
         std::cout << "entrei 1 for crack" << std::endl;
         std::cout << "numero de entradas salvas " << _numEntradas << std::endl;
